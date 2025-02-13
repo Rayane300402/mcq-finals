@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'students' , component:StudentsComponent},
   {path:'subjects' , component:SubjectsComponent},
   {path:'new-exam' , component:NewExamComponent},
-  {path:'**' , redirectTo:'exam' , pathMatch:'full'}
+  {path:'**' , redirectTo:'login' , pathMatch:'full'}
 ];
 
 @NgModule({
