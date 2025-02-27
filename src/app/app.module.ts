@@ -19,7 +19,8 @@ import { StudentModule } from './student/student.module';
     DoctorModule,
     SharedModule,
     StudentModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

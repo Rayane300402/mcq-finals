@@ -1,6 +1,13 @@
 {
-    "users":{
-        "name": "John",
-        "id":1
+  "students": [
+    {
+      "id": "942b",
+      "username": "test",
+      "email": "test@test.com",
+      "password": "123"
     }
+
+  ],
+  "doctors": [],
+  "login": []
 }
