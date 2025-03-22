@@ -31,13 +31,14 @@ export class RegisterComponent implements OnInit {
   }
 
   getStudents() {
-    this.service.getUsers().subscribe((res: any) => {
+    this.service.getUsers('students').subscribe((res: any) => {
       this.students = res;
     })
   }
 
   submit() {
     const model = {
+      id: this.students.length > 0 ? Math.max(...this.students.map((s: any) => s.id)) + 1 : 1, // Generate next sequential ID
       username: this.userForm.value.username,
       email: this.userForm.value.email,
       password: this.userForm.value.password

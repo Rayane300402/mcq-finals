@@ -1,13 +1,25 @@
 {
   "students": [
     {
-      "id": "942b",
+      "id": "1",
       "username": "test",
       "email": "test@test.com",
       "password": "123"
     }
-
   ],
-  "doctors": [],
-  "login": []
+  "doctor": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@admin.com",
+      "password": "123"
+    }
+  ],
+  "login": [
+    {
+      "username": "admin",
+      "role": "doctor",
+      "id": "1"
+    }
+  ]
 }
