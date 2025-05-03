@@ -1,67 +1,71 @@
 
   <div class="new-exam">
-    <mat-horizontal-stepper linear #stepper>
-        <mat-step label="اسم المادة" completed="true">
+    <!-- linear #stepper [selectedIndex]="steppperIndex" -->
+    <mat-horizontal-stepper linear #stepper >
+        <mat-step label="اسم المادة" [completed]="startAdd">
             <div class="AddSubject">
                 <div>اسم المادة : </div>
                 <mat-form-field appearance="fill" color="warn">
                     <mat-label>اسم المادة</mat-label>
-                    <input matInput type="text"  >
+                    <input matInput type="text" [formControl]="name" >
                 </mat-form-field>
-                <button color="warn"  mat-raised-button matStepperNext>ابدأ</button>
+                
+                <button color="warn"  mat-raised-button  (click)="start(stepper)">ابدأ</button>
             </div>
 
         </mat-step>
-        <mat-step label="اسئلة اللغة العربية" completed="true">
+        <mat-step label= "اسئلة {{subjectName}}" [completed]="true">
             <div class="question">
-                <form >
+                <form [formGroup]="questionForm">
                     <mat-form-field appearance="outline" color="warn" class="queiz">
                         <mat-label>السؤال</mat-label>
-                        <input matInput type="text"  >
+                        <input matInput type="text" formControlName="question" >
                     </mat-form-field>
 
                 <div class="row">
                         <div class="col-md-6 col-sm-12">
-                        <mat-radio-button value="answer1"  color="warn"></mat-radio-button>
+                        <mat-radio-button value="answer1"  color="warn" (change)="getCorrect($event)" name="answers"></mat-radio-button>
                             <mat-form-field color="warn">
                                 <mat-label>أجابة A</mat-label>
-                                <input matInput type="text"  >
+                                <input matInput type="text"  formControlName="answer1" >
                             </mat-form-field>
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                        <mat-radio-button value="answer2"  color="warn"></mat-radio-button>
+                        <mat-radio-button value="answer2"  color="warn" (change)="getCorrect($event)" name="answers"></mat-radio-button>
                             <mat-form-field color="warn">
                                 <mat-label>أجابة B</mat-label>
-                                <input matInput type="text"  >
+                                <input matInput type="text"  formControlName="answer2">
                             </mat-form-field>
                         
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                        <mat-radio-button value="answer3"  color="warn"></mat-radio-button>
+                        <mat-radio-button value="answer3"  color="warn" (change)="getCorrect($event)" name="answers"></mat-radio-button>
                         <mat-form-field color="warn">
                                 <mat-label>أجابة C</mat-label>
-                                <input matInput type="text"   >
+                                <input matInput type="text" formControlName="answer3"  >
                             </mat-form-field>
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                            <mat-radio-button value="answer4" color="warn"></mat-radio-button>
+                            <mat-radio-button value="answer4" color="warn" (change)="getCorrect($event)" name="answers"></mat-radio-button>
                             <mat-form-field color="warn">
                                 <mat-label>أجابة D</mat-label>
-                                <input matInput type="text"  >
+                                <input matInput type="text" formControlName="answer4" >
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="questBtn">
                         <div>
-                            <button mat-raised-button class="btn btn-success" matStepperNext >انتهاء</button>
-                            <button mat-raised-button color="warn" matStepperPrevious >الغاء</button>
+                            <!-- matStepperNext -->
+                            <button mat-raised-button class="btn-success-mat"   [disabled]="!questions.length"  (click)="submit(stepper)"> {{preview ? ' عرض' : 'انتهاء'}}  </button>
+                            <!-- matStepperPrevious -->
+                            <button mat-raised-button color="warn"   (click)="cancel(stepper)">الغاء</button>
                         </div>
                         <div>
-                            <button mat-raised-button color="accent">حذف </button>
-                            <button mat-raised-button color="primary" >حفظ</button>
+                            <button mat-raised-button color="accent" (click)="clearForm()">حذف </button>
+                            <button mat-raised-button color="primary" [disabled]="questionForm.invalid" (click)="createQuestion()">حفظ</button>
                         </div>
                         
                     </div>

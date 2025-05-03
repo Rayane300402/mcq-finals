@@ -1,6 +1,28 @@
 
 .new-exam {
     padding: 50px 0;
+
+
+
+    .btn-success-mat {
+        /* enabled (default) */
+        background-color: #28a745 !important;   // Bootstrap green-600
+        color: #fff !important;
+    
+        /* hover / focus */
+        &:hover:not([disabled]),
+        &:focus-visible:not([disabled]) {
+          background-color: #218838 !important; // darken 5–6 %
+        }
+    
+        /* disabled state – fall back to Angular Material default grey */
+        &[disabled] {
+          background-color: rgba(0, 0, 0, 0.12) !important;
+          color: rgba(0, 0, 0, 0.38) !important;
+          box-shadow: none !important;          // remove the raised shadow
+        }
+      }
+
     button {
         margin-right: 15px;
     }

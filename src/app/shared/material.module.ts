@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 
-const MatrialCommon = [
+const MaterialCommon = [
   MatButtonModule,
   MatButtonToggleModule,
   MatIconModule,
@@ -35,7 +35,7 @@ const MatrialCommon = [
   MatMenuModule
 ]
 @NgModule({
-  imports: [MatrialCommon],
-  exports:[MatrialCommon]
+  imports: [MaterialCommon],
+  exports:[MaterialCommon]
 })
-export class MatrialModule { }
+export class MaterialModule { }

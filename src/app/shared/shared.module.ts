@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MatrialModule } from './matrial.module';
+import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
     NavbarComponent
   ],
   imports: [
-    MatrialModule,
+    MaterialModule,
     CommonModule,
     HttpClientModule,
     RouterModule,
@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     BrowserModule,
     RouterModule,
-    MatrialModule,
+    MaterialModule,
     CommonModule,
     NavbarComponent
   ]

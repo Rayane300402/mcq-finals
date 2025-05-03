@@ -15,6 +15,9 @@
       "password": "123"
     }
   ],
+  "subjects": [
+
+  ],
   "login": [
     {
       "username": "admin",

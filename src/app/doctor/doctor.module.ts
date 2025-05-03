@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NewExamComponent } from './components/new-exam/new-exam.component';
 import { StudentsComponent } from './components/students/students.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { SubjectsComponent } from './components/subjects/subjects.component';
   ],
   imports: [
     SharedModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ]
 })
 export class DoctorModule { }
