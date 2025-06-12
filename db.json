@@ -41,8 +41,8 @@
   ],
   "login": [
     {
-      "username": "admin",
-      "role": "doctor",
+      "username": "test",
+      "role": "students",
       "id": "1"
     }
   ]
