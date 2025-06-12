@@ -16,7 +16,28 @@
     }
   ],
   "subjects": [
-
+    {
+      "id": "ff5d",
+      "name": "crazy",
+      "questions": [
+        {
+          "question": "gegg",
+          "answer1": "grag",
+          "answer2": "geag",
+          "answer3": "geag",
+          "answer4": "geag",
+          "correctAnswer": "grag"
+        },
+        {
+          "question": "hwhrw",
+          "answer1": "hwr",
+          "answer2": "hwr",
+          "answer3": "hwrh",
+          "answer4": "hwr",
+          "correctAnswer": "hwr"
+        }
+      ]
+    }
   ],
   "login": [
     {

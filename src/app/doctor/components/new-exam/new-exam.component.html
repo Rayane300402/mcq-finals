@@ -74,29 +74,29 @@
         </mat-step>
         <mat-step label="عرض الاختبار" completed="false">
             <div class="examBox">
-                <div class="examhead text-center"><h2>اختبار اللفة العربية</h2></div>
-                <div class="quizBox">
-                    <strong><span class="text-danger">سؤال 1</span> .  test</strong>
+                <div class="examhead text-center"><h2>اختبار  {{subjectName}} </h2></div>
+                <div class="quizBox"  *ngFor="let item of questions; let i = index">
+                    <strong><span class="text-danger">سؤال 1</span> .  {{item.question}}</strong>
                     <div class="row" dir="rtl">
                         <div class="col-sm-12">
-                            A. تيست 
+                            A. {{item.answer1}} 
                         </div>
                         <div class="col-sm-12">
-                            B. تيست
+                            B. {{item.answer2}}
                         </div>
                         <div class="col-sm-12">
-                            C. تيست
+                            C. {{item.answer3}}
                         </div>
                         <div class="col-sm-12">
-                            D. تيست
+                            D. {{item.answer4}}
                         </div>
                         <div class="col-sm-12">
-                            <span class="text-success">الاجابة الصحيحة. تيست</span>
+                            <span class="text-success">الاجابة الصحيحة. {{item.correctAnswer}}</span>
                         </div>
                     </div>
                     <div class="text-right">
-                        <button mat-raised-button class="btn btn-warning" >تعديل</button>
-                        <button mat-raised-button  class="btn btn-danger" >حذف</button>
+                        <!-- <button mat-raised-button class="btn btn-warning" >تعديل</button> -->
+                        <button mat-raised-button color="warn" class="btn btn-danger" (click)="delete(i)">حذف</button>
                     </div>
                     <hr>
                 </div>

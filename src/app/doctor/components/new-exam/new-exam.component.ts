@@ -18,8 +18,9 @@ export class NewExamComponent implements OnInit {
   startAdd: boolean = false;
   preview: boolean = false;
   subjectName: any = '';
+  id: any;
 
-  @ViewChildren(MatRadioButton) radios!: QueryList<MatRadioButton>; 
+  @ViewChildren(MatRadioButton) radios!: QueryList<MatRadioButton>;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService, private cdr: ChangeDetectorRef, private doctorService: DoctorService) { }
 
@@ -63,7 +64,7 @@ export class NewExamComponent implements OnInit {
   }
 
   submit(stepper: MatStepper) {
-    if(this.preview) {
+    if (this.preview) {
       this.cdr.detectChanges();
       stepper.next();
     } else {
@@ -73,26 +74,21 @@ export class NewExamComponent implements OnInit {
       }
       console.log(model);
       this.doctorService.createSubject(model).subscribe((res: any) => {
-        if (res.status == 200 || res.status === 201) {
-          this.toastr.success('تم انشاء الاختبار بنجاح');
-          this.clearForm();
-          this.questions = [];
-          this.subjectName = '';
-          this.name.reset();
-          this.startAdd = false;
-          this.preview = true;
-    
-        } else {
-          this.toastr.error('حدث خطأ ما');
-        }
+        // if (res.status == 200 || res.status == 201 || res.status == 204) {
+        this.toastr.success('تم انشاء الاختبار بنجاح');
+        this.id = res.id;
+        this.preview = true;
+
       },
         (err) => {
+          console.error(err);
           this.toastr.error('حدث خطأ ما');
         }
       );
-  
+
+
     }
-    
+
 
   }
 
@@ -124,6 +120,22 @@ export class NewExamComponent implements OnInit {
     this.startAdd = false;
     this.cdr.detectChanges();
     stepper.previous();
+  }
+
+  delete(index: number) {
+    this.questions.splice(index, 1);
+    const model = {
+      name: this.subjectName,
+      questions: this.questions
+    }
+    this.doctorService.updateSubject(model, this.id).subscribe((res: any) => {
+      console.log(res);
+      this.toastr.success('تم حذف السؤال بنجاح');
+    }, (err) => {
+      console.error(err);
+      this.toastr.error('حدث خطأ ما أثناء حذف السؤال');
+    });
+
   }
 
 }
