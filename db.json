@@ -19,10 +19,18 @@
       "password": "123"
     },
     {
-      "id": "6b8a",
-      "username": "meo",
+      "usrername": "meo",
       "email": "meoq@meow.com",
-      "password": "123"
+      "password": "123",
+      "subjects": [
+        {
+          "name": "crazy",
+          "id": "ff5d",
+          "degree": 1,
+          "total": 1
+        }
+      ],
+      "id": "6b8a"
     }
   ],
   "doctor": [

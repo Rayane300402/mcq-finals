@@ -28,5 +28,14 @@ export class AuthService {
   getRole(){
     return this.http.get(environment.baseApi+'login/1');
   }
+
+  getStudent(id:any){
+    return this.http.get(environment.baseApi+'students/'+id);
+  }
+
+    updateStudent(id:any, model:any){
+    return this.http.put(environment.baseApi+'students/'+id, model);
+
+  }
   
 }

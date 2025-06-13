@@ -14,8 +14,11 @@ export class ExamComponent implements OnInit {
   id: any;
   subject: any;
   user: any = {};
-  total:number = 0;
+  studentInfo: any;
+  total: number = 0;
   showResult: boolean = false;
+  userSubjects: any[] = [];
+
   constructor(private route: ActivatedRoute, private doctorService: DoctorService, private toastr: ToastrService, private auth: AuthService) {
     this.id = this.route.snapshot.paramMap.get('id');
     // console.log('Exam ID:', this.id);
@@ -23,7 +26,7 @@ export class ExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubject();
-    this.getUserInfo();
+    this.getLoggedInUser();
   }
 
   getSubject() {
@@ -33,14 +36,25 @@ export class ExamComponent implements OnInit {
     });
   }
 
-  getUserInfo() {
+  getLoggedInUser() {
     this.auth.getRole().subscribe((res: any) => {
       this.user = res;
+      this.getUserData(); // Fetch user data after getting the role
     }
       , (err: any) => {
         console.error('Error fetching user info:', err);
       }
     );
+  }
+
+  getUserData() {
+    this.auth.getStudent(this.user.userId).subscribe((res: any) => {
+      this.studentInfo = res;
+      this.userSubjects = res.subjects || []; // Ensure subjects is defined
+      // console.log('User Data:', this.studentInfo);
+    }, (err: any) => {
+      console.error('Error fetching user data:', err);
+    });
   }
 
   delete(index: number) {
@@ -63,8 +77,8 @@ export class ExamComponent implements OnInit {
     let value = event.value,
       questionIndex = event.source.name;
 
-      this.subject.questions[questionIndex].selectedAnswer = value; // Store the selected answer in the question object, creating a new property
-      console.log('Updated Question:', this.subject.questions);
+    this.subject.questions[questionIndex].selectedAnswer = value; // Store the selected answer in the question object, creating a new property
+    console.log('Updated Question:', this.subject.questions);
     console.log('Selected Answer:', event);
   }
 
@@ -76,9 +90,30 @@ export class ExamComponent implements OnInit {
         this.total++;
       }
     });
-    console.log('Total Correct Answers:', this.total);
+
     this.toastr.success(`تم الانتهاء من الامتحان بنجاح`);
-    this.showResult = true; // Show the result after calculation
+    this.showResult = true;
+    this.userSubjects.push({
+        name: this.subject.name,
+        id: this.id,
+        degree: this.total,
+        total: this.total,
+      });
+
+    const model = {
+      usrername: this.studentInfo.username,
+      email: this.studentInfo.email,
+      password: this.studentInfo.password,
+      subjects: this.userSubjects,
+    }
+
+    this.auth.updateStudent(this.studentInfo.id, model).subscribe((res: any) => {
+      console.log('Updated User Data:', res);
+      this.toastr.success('تم تحديث بيانات الطالب بنجاح');
+    }, (err: any) => {
+      console.error('Error updating user data:', err);
+      this.toastr.error('حدث خطأ ما أثناء تحديث بيانات الطالب');
+    });
   }
 
 }
