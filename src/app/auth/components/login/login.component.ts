@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       const model = {
         username : this.users[index].username,
         role: this.type,
+        userId: this.users[index].id,
       }
     
    
