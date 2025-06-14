@@ -113,11 +113,11 @@ export class ExamComponent implements OnInit {
         name: this.subject.name,
         id: this.id,
         degree: this.total,
-        total: this.total,
+        total: this.subject.questions.length,
       });
 
     const model = {
-      usrername: this.studentInfo.username,
+      username: this.studentInfo.username,
       email: this.studentInfo.email,
       password: this.studentInfo.password,
       subjects: this.userSubjects,

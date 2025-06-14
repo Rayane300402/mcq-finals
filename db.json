@@ -1,27 +1,27 @@
 {
   "students": [
     {
-      "usrername": "test",
+      "username": "test",
       "email": "test@test.com",
+      "password": "123",
+      "id": "1"
+    },
+    {
+      "username": "mo",
+      "email": "test1@test1.com",
       "password": "123",
       "subjects": [
         {
           "name": "crazy",
           "id": "ff5d",
           "degree": 1,
-          "total": 1
+          "total": 2
         }
       ],
-      "id": "1"
+      "id": "2"
     },
     {
-      "id": "2",
-      "username": "mohammad",
-      "email": "test1@test1.com",
-      "password": "123"
-    },
-    {
-      "usrername": "talaya",
+      "username": "talaya",
       "email": "epic@musical.com",
       "password": "123",
       "subjects": [
@@ -35,7 +35,7 @@
       "id": "7c40"
     },
     {
-      "usrername": "meo",
+      "username": "meo",
       "email": "meoq@meow.com",
       "password": "123",
       "subjects": [

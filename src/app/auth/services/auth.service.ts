@@ -8,34 +8,34 @@ import { Subject } from 'rxjs';
 })
 export class AuthService {
 
-  user= new Subject<any>();
+  user = new Subject<any>();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-  createUser(model:any){
-    return this.http.post(environment.baseApi+'students', model);
+  createUser(model: any) {
+    return this.http.post(environment.baseApi + 'students', model);
   }
 
-  getUsers(type:String){
-    return this.http.get(environment.baseApi+type);
+  getUsers(type: String) {
+    return this.http.get(environment.baseApi + type);
   }
 
-  login(model:any){
-    return this.http.put(environment.baseApi+'login/1', model);
+  login(model: any) {
+    return this.http.put(environment.baseApi + 'login/1', model);
   }
 
-  getRole(){
-    return this.http.get(environment.baseApi+'login/1');
+  getRole() {
+    return this.http.get(environment.baseApi + 'login/1');
   }
 
-  getStudent(id:any){
-    return this.http.get(environment.baseApi+'students/'+id);
+  getStudent(id: any) {
+    return this.http.get(environment.baseApi + 'students/' + id);
   }
 
-    updateStudent(id:any, model:any){
-    return this.http.put(environment.baseApi+'students/'+id, model);
+  updateStudent(id: any, model: any) {
+    return this.http.put(environment.baseApi + 'students/' + id, model);
 
   }
-  
+
 }
