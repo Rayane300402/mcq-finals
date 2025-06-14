@@ -6,22 +6,22 @@
         <strong><span class="text-danger">سؤال {{i+1}}</span> . test</strong>
         <div class="row mt-3">
             <div class="col-md-6 col-sm-12">
-                <mat-radio-button value="{{item.answer1}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult"></mat-radio-button>
+                <mat-radio-button value="{{item.answer1}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult && validExam"></mat-radio-button>
                 <label>A. {{item.answer1}}</label>
             </div>
 
             <div class="col-md-6 col-sm-12">
-                <mat-radio-button value="{{item.answer2}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult"></mat-radio-button>
+                <mat-radio-button value="{{item.answer2}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult && validExam"></mat-radio-button>
                 <label>B. {{item.answer2}}</label>
             </div>
 
             <div class="col-md-6 col-sm-12">
-                <mat-radio-button value="{{item.answer3}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult"></mat-radio-button>
+                <mat-radio-button value="{{item.answer3}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult && validExam"></mat-radio-button>
                 <label>C. {{item.answer3}}</label>
             </div>
 
             <div class="col-md-6 col-sm-12">
-                <mat-radio-button value="{{item.answer4}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult"></mat-radio-button>
+                <mat-radio-button value="{{item.answer4}}" color="warn" (change)="getAnswer($event)" name="{{i}}" *ngIf="user.role == 'students' && !showResult && validExam"></mat-radio-button>
                 <label>D. {{item.answer4}}</label>
             </div>
         </div>
@@ -33,8 +33,8 @@
     </div>
     <!-- style="display: flex; flex-direction: column;" -->
     <div class="text-center "  *ngIf="user.role == 'students'">
-        <span *ngIf="showResult" class="fs-4 text-success">{{total}}/{{this.subject.questions.length}}</span>
-        <button *ngIf="!showResult" class="btn btn-success px-5 fs-5" (click)="getResult()"> النتيجة</button>
+        <span *ngIf="showResult || !validExam" class="fs-4 text-success">{{total}}/{{this.subject.questions.length}}</span>
+        <button *ngIf="!showResult && validExam" class="btn btn-success px-5 fs-5" (click)="getResult()"> النتيجة</button>
     </div>
 
 </div>

@@ -18,6 +18,7 @@ export class ExamComponent implements OnInit {
   total: number = 0;
   showResult: boolean = false;
   userSubjects: any[] = [];
+  validExam: boolean = true;
 
   constructor(private route: ActivatedRoute, private doctorService: DoctorService, private toastr: ToastrService, private auth: AuthService) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -52,6 +53,7 @@ export class ExamComponent implements OnInit {
       this.studentInfo = res;
       this.userSubjects = res.subjects || []; // Ensure subjects is defined
       // console.log('User Data:', this.studentInfo);
+      this.checkValidExam(); // Check if the exam is valid after fetching user data
     }, (err: any) => {
       console.error('Error fetching user data:', err);
     });
@@ -80,6 +82,17 @@ export class ExamComponent implements OnInit {
     this.subject.questions[questionIndex].selectedAnswer = value; // Store the selected answer in the question object, creating a new property
     console.log('Updated Question:', this.subject.questions);
     console.log('Selected Answer:', event);
+  }
+
+  checkValidExam() {
+    for (let question of this.userSubjects) {
+      if (question.id == this.id) {
+        this.toastr.warning('لقد قمت بأداء هذا الامتحان من قبل');
+        this.validExam = false;
+        this.total = question.degree; 
+      }
+    }
+    console.log('Valid Exam:', this.validExam);
   }
 
   getResult() {
