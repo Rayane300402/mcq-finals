@@ -5,7 +5,7 @@
                 <div> {{item.name}} </div>
             </div>
             <div class="subBtn">
-                <button mat-raised-button color="warn" class="mx-1" *ngIf="user?.role == 'doctor'" (click)="delete(i)">حذف</button>
+                <button mat-raised-button color="warn" class="mx-1" *ngIf="user?.role == 'doctor'" (click)="delete(i); $event.stopPropagation()">حذف</button>
                 <button mat-raised-button color="primary" class="mx-1" *ngIf="user?.role == 'doctor'">عرض</button>
                 <button mat-raised-button class="mx-1 btn btn-success btn-success-mat" *ngIf="user?.role == 'students'">ابدأ الاختبار</button>
             </div>

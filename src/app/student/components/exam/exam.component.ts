@@ -53,7 +53,10 @@ export class ExamComponent implements OnInit {
       this.studentInfo = res;
       this.userSubjects = res.subjects || []; // Ensure subjects is defined
       // console.log('User Data:', this.studentInfo);
+      //  should only run thin fucntion if user is a student
+      if (this.studentInfo.role === 'student') {
       this.checkValidExam(); // Check if the exam is valid after fetching user data
+      }
     }, (err: any) => {
       console.error('Error fetching user data:', err);
     });

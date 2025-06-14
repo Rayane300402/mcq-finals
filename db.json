@@ -83,8 +83,8 @@
   ],
   "login": [
     {
-      "username": "test",
-      "role": "students",
+      "username": "admin",
+      "role": "doctor",
       "userId": "1",
       "id": "1"
     }
